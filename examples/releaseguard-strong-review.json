@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1.0.0",
+  "appVersion": "1.0.0",
+  "rubricVersion": "1.0.0",
+  "metadata": {
+    "assetName": "ReleaseGuard homepage hero",
+    "assetVersion": "Test fixture v1",
+    "reviewerType": "human",
+    "reviewedAt": "2026-09-19T00:00:00.000Z",
+    "audience": "Platform engineering leaders at regulated B2B software companies",
+    "journeyStage": "Solution aware",
+    "buyingTrigger": "A release is delayed while teams assemble compliance evidence by hand",
+    "alternatives": "Manual release checklists, spreadsheets, internal scripts, or delaying the release",
+    "suppliedEvidence": "Fictional product behavior and pilot evidence created only for testing this evaluator."
+  },
+  "sourceMessaging": "Ship regulated software without rebuilding the audit trail by hand.\n\nReleaseGuard gives platform engineering leaders one review queue for deployment evidence, policy checks, and named approvals. AI-assisted checks flag missing evidence against policies your team configures; your release owner makes the final decision. In a 12-team pilot, audit-packet preparation fell from a median of four hours to 45 minutes. Results will vary by workflow and policy complexity.",
+  "dimensions": [
+    {
+      "id": "icp-specificity",
+      "score": 5,
+      "confidence": "high",
+      "evidenceQuote": "platform engineering leaders",
+      "rationale": "The role and regulated delivery context are immediately recognizable.",
+      "missingContext": "Company-size boundaries could be tested."
+    },
+    {
+      "id": "problem-relevance",
+      "score": 5,
+      "confidence": "high",
+      "evidenceQuote": "without rebuilding the audit trail by hand",
+      "rationale": "The copy names a concrete workflow problem at the release decision point.",
+      "missingContext": "The cost of delayed releases could add commercial context."
+    },
+    {
+      "id": "differentiation",
+      "score": 4,
+      "confidence": "medium",
+      "evidenceQuote": "one review queue for deployment evidence, policy checks, and named approvals",
+      "rationale": "The integrated review mechanism is distinct, though no direct competitive proof is supplied.",
+      "missingContext": "A validated contrast with manual workflows and internal tools."
+    },
+    {
+      "id": "value-articulation",
+      "score": 5,
+      "confidence": "high",
+      "evidenceQuote": "audit-packet preparation fell from a median of four hours to 45 minutes",
+      "rationale": "A specific mechanism is tied to a bounded workflow result.",
+      "missingContext": "Longer-term deployment or audit outcomes."
+    },
+    {
+      "id": "clarity",
+      "score": 5,
+      "confidence": "high",
+      "evidenceQuote": "AI-assisted checks flag missing evidence against policies your team configures; your release owner makes the final decision.",
+      "rationale": "The system action and human decision boundary are clear.",
+      "missingContext": "No material clarity gap in this short asset."
+    },
+    {
+      "id": "evidence-and-credibility",
+      "score": 4,
+      "confidence": "medium",
+      "evidenceQuote": "In a 12-team pilot",
+      "rationale": "The claim is scoped and qualified, but study design and sample details are absent.",
+      "missingContext": "Pilot method, participants, and measurement definition."
+    },
+    {
+      "id": "narrative-consistency",
+      "score": 5,
+      "confidence": "high",
+      "evidenceQuote": "deployment evidence, policy checks, and named approvals",
+      "rationale": "Audience, problem, mechanism, proof, and oversight reinforce one positioning.",
+      "missingContext": "No material narrative gap in this short asset."
+    },
+    {
+      "id": "responsible-ai-claims",
+      "score": 4,
+      "confidence": "high",
+      "evidenceQuote": "your release owner makes the final decision",
+      "rationale": "AI is bounded to configured-policy checks and human accountability is explicit.",
+      "missingContext": "The data used by the checks and known failure modes are not explained."
+    }
+  ],
+  "summary": {
+    "priorityFindings": [
+      "Preserve the clear human decision boundary.",
+      "Substantiate the pilot result with a short methodology note.",
+      "Test the one-review-queue contrast against internal scripts and manual checklists."
+    ],
+    "riskyClaims": [
+      "The pilot result needs an accessible definition and methodology before public use."
+    ],
+    "nextTest": "Run message comprehension and alternative-comparison interviews with six platform engineering leaders in regulated software companies.",
+    "humanNotes": "Fictional fixture used to test a strong but not perfect review."
+  },
+  "manualReview": {
+    "status": "reviewed"
+  },
+  "calculation": {
+    "score": 93,
+    "applicableWeight": 100,
+    "excludedDimensionIds": [],
+    "criticalFlagCodes": []
+  }
+}

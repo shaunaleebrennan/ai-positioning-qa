@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shaunaleebrennan.github.io/ai-positioning-qa/schemas/review.schema.json",
+  "title": "AI Positioning QA review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "appVersion",
+    "rubricVersion",
+    "metadata",
+    "sourceMessaging",
+    "dimensions",
+    "summary",
+    "manualReview",
+    "calculation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "appVersion": { "const": "1.0.0" },
+    "rubricVersion": { "const": "1.0.0" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assetName",
+        "assetVersion",
+        "reviewerType",
+        "reviewedAt",
+        "audience",
+        "journeyStage",
+        "buyingTrigger",
+        "alternatives",
+        "suppliedEvidence"
+      ],
+      "properties": {
+        "assetName": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "assetVersion": { "type": "string", "maxLength": 100 },
+        "reviewerType": { "enum": ["human", "ai-assisted"] },
+        "reviewedAt": { "type": "string", "format": "date-time" },
+        "audience": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "journeyStage": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "buyingTrigger": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "alternatives": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "suppliedEvidence": { "type": "string", "maxLength": 5000 }
+      }
+    },
+    "sourceMessaging": { "type": "string", "minLength": 1, "maxLength": 50000 },
+    "dimensions": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": { "$ref": "#/$defs/dimensionReview" }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["priorityFindings", "riskyClaims", "nextTest", "humanNotes"],
+      "properties": {
+        "priorityFindings": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string", "minLength": 1, "maxLength": 2000 }
+        },
+        "riskyClaims": {
+          "type": "array",
+          "maxItems": 50,
+          "items": { "type": "string", "minLength": 1, "maxLength": 2000 }
+        },
+        "nextTest": { "type": "string", "minLength": 1, "maxLength": 5000 },
+        "humanNotes": { "type": "string", "maxLength": 5000 }
+      }
+    },
+    "manualReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pending", "reviewed"] }
+      }
+    },
+    "calculation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "applicableWeight", "excludedDimensionIds", "criticalFlagCodes"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "applicableWeight": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 },
+        "excludedDimensionIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string" }
+        },
+        "criticalFlagCodes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["CRITICAL_EVIDENCE_RISK", "CRITICAL_RESPONSIBLE_AI_RISK"]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "dimensionReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "score", "confidence", "evidenceQuote", "rationale", "missingContext"],
+      "properties": {
+        "id": {
+          "enum": [
+            "icp-specificity",
+            "problem-relevance",
+            "differentiation",
+            "value-articulation",
+            "clarity",
+            "evidence-and-credibility",
+            "narrative-consistency",
+            "responsible-ai-claims"
+          ]
+        },
+        "score": {
+          "oneOf": [
+            { "type": "integer", "minimum": 1, "maximum": 5 },
+            { "type": "null" }
+          ]
+        },
+        "confidence": { "enum": ["low", "medium", "high", "not-applicable"] },
+        "evidenceQuote": { "type": "string", "maxLength": 5000 },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 5000 },
+        "missingContext": { "type": "string", "maxLength": 5000 }
+      }
+    }
+  }
+}

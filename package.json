@@ -1,0 +1,14 @@
+{
+  "name": "ai-positioning-qa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A dependency-free, browser-only positioning review workflow.",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check docs/assets/js/*.js && node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,111 @@
+// Kept as an ES module so the static GitHub Pages app can load an example
+// without fetching data or relying on a server.
+export const SIGNALSDESK_EXAMPLE = Object.freeze({
+  schemaVersion: "1.0.0",
+  appVersion: "1.0.0",
+  rubricVersion: "1.0.0",
+  metadata: {
+    assetName: "SignalsDesk homepage hero",
+    assetVersion: "Worked example",
+    reviewerType: "human",
+    reviewedAt: "2026-09-19T00:00:00.000Z",
+    audience: "Product managers at growing B2B software companies",
+    journeyStage: "Problem aware",
+    buyingTrigger: "Customer evidence is scattered before a roadmap or positioning decision",
+    alternatives: "Spreadsheets, general-purpose note tools, manual synthesis, research repositories",
+    suppliedEvidence: "No customer or product evidence was supplied; SignalsDesk is fictional.",
+  },
+  sourceMessaging:
+    "The future of customer intelligence is here.\n\nSignalsDesk is an innovative AI-powered platform that transforms your customer data into actionable insights, helping modern teams move faster and make smarter decisions.",
+  dimensions: [
+    {
+      id: "icp-specificity",
+      score: 1,
+      confidence: "high",
+      evidenceQuote: "modern teams",
+      rationale: "The phrase does not identify the intended product-management audience or its use context.",
+      missingContext: "Role, company maturity, workflow, and trigger.",
+    },
+    {
+      id: "problem-relevance",
+      score: 2,
+      confidence: "medium",
+      evidenceQuote: "customer data",
+      rationale: "A possible input is named, but the workflow problem, consequence, and urgency are absent.",
+      missingContext: "The evidence problem and the decision it obstructs.",
+    },
+    {
+      id: "differentiation",
+      score: 1,
+      confidence: "high",
+      evidenceQuote: "innovative AI-powered platform",
+      rationale: "The description is interchangeable with many products and contains no relevant contrast.",
+      missingContext: "Alternative-specific advantage and defensible product mechanism.",
+    },
+    {
+      id: "value-articulation",
+      score: 2,
+      confidence: "high",
+      evidenceQuote: "move faster and make smarter decisions",
+      rationale: "The outcomes are broad and no product mechanism connects them to a real workflow.",
+      missingContext: "A specific outcome, mechanism, and buyer priority.",
+    },
+    {
+      id: "clarity",
+      score: 3,
+      confidence: "high",
+      evidenceQuote: "customer intelligence",
+      rationale: "The broad category is understandable, but the input, output, and workflow remain unclear.",
+      missingContext: "What the product does with which evidence for whom.",
+    },
+    {
+      id: "evidence-and-credibility",
+      score: 2,
+      confidence: "medium",
+      evidenceQuote: "transforms your customer data into actionable insights",
+      rationale: "The transformation claim is unsupported and unbounded.",
+      missingContext: "Product behavior, methodology, customer proof, or transparent qualification.",
+    },
+    {
+      id: "narrative-consistency",
+      score: 4,
+      confidence: "medium",
+      evidenceQuote: "customer data into actionable insights",
+      rationale: "The short asset consistently discusses customer intelligence and decisions despite being generic.",
+      missingContext: "A specific audience and problem would make the narrative more coherent.",
+    },
+    {
+      id: "responsible-ai-claims",
+      score: 2,
+      confidence: "high",
+      evidenceQuote: "AI-powered",
+      rationale: "AI is presented as a capability without explaining its role, oversight, data, or limitations.",
+      missingContext: "AI mechanism, source traceability, human control, and limitations.",
+    },
+  ],
+  summary: {
+    priorityFindings: [
+      "Identify the product-management workflow and decision moment.",
+      "Explain what the product does with customer evidence instead of relying on AI-powered.",
+      "Replace the unsupported transformation promise with a specific, testable benefit.",
+    ],
+    riskyClaims: [
+      "Transforms your customer data into actionable insights is unsupported and unbounded.",
+      "Make smarter decisions implies an outcome without evidence or qualification.",
+    ],
+    nextTest:
+      "Compare this message with a workflow-specific alternative in five interviews with product managers who recently synthesized customer evidence.",
+    humanNotes: "SignalsDesk is fictional. This is a worked example, not validated positioning.",
+  },
+  manualReview: { status: "reviewed" },
+  calculation: {
+    score: 39,
+    applicableWeight: 100,
+    excludedDimensionIds: [],
+    criticalFlagCodes: [],
+  },
+});
+
+export function cloneSignalsDeskExample() {
+  return JSON.parse(JSON.stringify(SIGNALSDESK_EXAMPLE));
+}
