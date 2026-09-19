@@ -37,6 +37,7 @@ test("the static app exposes the complete workflow with unique IDs", async () =>
   assert.match(html, /<section id="results"[^>]*hidden/);
   assert.match(html, /<script type="module" src="\.\/assets\/js\/app\.js"><\/script>/);
   assert.match(html, /<link rel="stylesheet" href="\.\/assets\/styles\.css">/);
+  assert.match(html, /<link rel="icon" href="\.\/favicon\.svg" type="image\/svg\+xml">/);
 });
 
 test("the browser surface blocks remote connections and unsafe rendering primitives", async () => {
