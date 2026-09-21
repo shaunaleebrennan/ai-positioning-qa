@@ -1,6 +1,10 @@
-# AI Positioning QA · IT buyer review
+# IT Pressure Test
 
-[Try the IT buyer tool](https://shaunaleebrennan.github.io/ai-positioning-qa/) · [Manual eight-dimension review](https://shaunaleebrennan.github.io/ai-positioning-qa/manual-review.html)
+[Try the IT buyer tool](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/) · [Manual eight-dimension review](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/manual-review.html)
+
+**[Read the portfolio case study](https://shaunaleebrennan.github.io/shauna-ai-portfolio/case-study.html?case=it-pressure-test)**
+
+IT Pressure Test replaces the original AI Positioning QA as the featured public build. This repository retains the implementation and evaluation history; the live app is hosted inside the portfolio. `docs/tool.html` is the app entry point used by the portfolio sync script. The old Pages root redirects to the new live location.
 
 ## IT buyer workflow · v2.2
 
@@ -18,7 +22,7 @@ The original manual evaluator and saved-review JSON format remain available sepa
 
 An open-source, browser-based evaluator for evidence-led B2B positioning reviews.
 
-[Open the evaluator](https://shaunaleebrennan.github.io/ai-positioning-qa/) · [See the rubric](framework/positioning-rubric.md) · [Review the worked example](examples/signalsdesk-worked-example.md)
+[Open the evaluator](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/) · [See the rubric](framework/positioning-rubric.md) · [Review the worked example](examples/signalsdesk-worked-example.md)
 
 AI Positioning QA turns subjective messaging feedback into a review you can inspect and discuss. It scores one asset across eight positioning dimensions, requires exact source evidence, calculates results deterministically, and leaves the final judgement with the marketer.
 
