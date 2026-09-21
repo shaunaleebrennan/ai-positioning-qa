@@ -46,3 +46,7 @@ All notable changes to this project will be documented here.
 - Kept rubric 1.0.0 weights and compatibility with app 1.0.0 review files.
 
 - Renamed Journey stage to Awareness stage, with five selectable stages and prospect-knowledge indicators; prompts and Markdown exports use the same framework. Existing saved JSON remains compatible.
+
+## IT buyer interface 2.2 — 2026-09-21
+
+Integrated the ChatGPT IT-buyer prototype with local deep review, six audiences, buying roles, awareness stages, safe result invalidation and complete Markdown context. Preserved the original manual evaluator. See the integration evaluation for limits and checks.

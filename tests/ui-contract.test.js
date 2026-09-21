@@ -9,7 +9,7 @@ async function read(path) {
 }
 
 test("the static app exposes the complete workflow with unique IDs", async () => {
-  const html = await read("docs/index.html");
+  const html = await read("docs/manual-review.html");
   const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
   assert.equal(new Set(ids).size, ids.length, "HTML IDs must be unique");
 
@@ -42,7 +42,7 @@ test("the static app exposes the complete workflow with unique IDs", async () =>
 
 test("the browser surface blocks remote connections and unsafe rendering primitives", async () => {
   const [html, app] = await Promise.all([
-    read("docs/index.html"),
+    read("docs/manual-review.html"),
     read("docs/assets/js/app.js"),
   ]);
 
@@ -55,7 +55,7 @@ test("the browser surface blocks remote connections and unsafe rendering primiti
 
 test("the interface includes keyboard, small-screen, and reduced-motion safeguards", async () => {
   const [html, css] = await Promise.all([
-    read("docs/index.html"),
+    read("docs/manual-review.html"),
     read("docs/assets/styles.css"),
   ]);
 

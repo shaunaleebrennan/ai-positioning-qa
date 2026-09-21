@@ -1,4 +1,20 @@
-# AI Positioning QA
+# AI Positioning QA · IT buyer review
+
+[Try the IT buyer tool](https://shaunaleebrennan.github.io/ai-positioning-qa/) · [Manual eight-dimension review](https://shaunaleebrennan.github.io/ai-positioning-qa/manual-review.html)
+
+## IT buyer workflow · v2.2
+
+Imported from the latest ChatGPT prototype and integrated into the portfolio design. Choose one of six IT audiences, a buying role, awareness stage, purchase stage and asset type, then paste an asset. The tool returns a Gut Reaction, priority changes, buyer questions and an in-tool deep review with matching passages and an editable rewrite brief.
+
+This is a **local rules-based diagnostic**, with no model calls or automatic storage. The six-gate score counts language signals; it is not a measure of buyer readiness or factual accuracy. Prototype weights vary by remit, role and purchase stage. Awareness and asset type guide the rewrite brief; market focus is recorded context only. Keywords can be negated, irrelevant or stuffed into copy. A human must assess meaning and proof.
+
+The original manual evaluator and saved-review JSON format remain available separately. Its eight-dimension scores are not comparable to the IT tool's six-gate scores.
+
+[Integration and validation notes](evals/it-buyer-integration-2026-09-21.md)
+
+---
+
+## Original manual evaluator
 
 An open-source, browser-based evaluator for evidence-led B2B positioning reviews.
 
