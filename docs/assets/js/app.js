@@ -1,7 +1,9 @@
+import { diagnoseReview, prepareImportedReview, importContextErrors } from "./diagnostics.js";
+import { STRATEGY_FIELDS, strategyRecord, strategyMarkdown } from "./strategy.js";
 import { reviewToJson, reviewToMarkdown, exportFilename } from "./export.js";
 import { generateEvaluationPrompt } from "./prompt.js";
 import { DIMENSIONS } from "./rubric.js";
-import { cloneSignalsDeskExample } from "./sample-data.js";
+import { cloneSignalsDeskExample, cloneReleaseGuardExample, cloneRelayboardExample } from "./sample-data.js";
 import { calculateScore } from "./scoring.js";
 import { calculationFor, parseReviewJson, SCHEMA_VERSION, validateReview } from "./validation.js";
 import { APP_VERSION, RUBRIC_VERSION } from "./config.js";
@@ -258,7 +260,7 @@ function collectReview() {
     appVersion: APP_VERSION,
     rubricVersion: RUBRIC_VERSION,
     metadata: collectMetadata(),
-    sourceMessaging: getValue("source-messaging"),
+    sourceMessaging: byId("source-messaging")?.value || "",
     dimensions,
     summary: {
       priorityFindings: parseLines(getValue("priority-findings")),
@@ -293,10 +295,16 @@ function populateReview(review) {
   };
   Object.entries(map).forEach(([id, value]) => setValue(id, value));
   renderDimensions(review.dimensions);
+  updateProgress();
 }
 
 function renderResults(review) {
   const scoreResult = calculateScore(review.dimensions);
+  const diagnostic = diagnoseReview(review);
+  setMessage(byId('diagnostic-status'), diagnostic.status);
+  const warnings = byId('diagnostic-warnings');
+  warnings.replaceChildren(...diagnostic.warnings.map(text => makeElement('li', {text})));
+  setMessage(byId('score-sensitivity'), `One-point sensitivity: ${diagnostic.sensitivity.min}–${diagnostic.sensitivity.max}/100 if every applicable rating moves down or up by one. This is a scenario, not a statistical confidence interval.`);
   setMessage(byId("overall-score"), String(scoreResult.score));
   setMessage(byId("applicable-weight"), `${scoreResult.applicableWeight}%`);
 
@@ -401,7 +409,11 @@ function exportReview(format) {
 function clearReview() {
   activeReviewedAt = new Date().toISOString();
   byId("review-form")?.reset();
+  setValue("generated-prompt", "");
+  setValue("import-json", "");
   renderDimensions();
+  updateProgress();
+  setMessage(byId("strategy-status"), "");
   setValue("priority-findings", "");
   setValue("risky-claims", "");
   setValue("next-test", "");
@@ -416,15 +428,35 @@ function clearReview() {
   setMessage(byId("status-message"), "Review cleared. Nothing was saved.", "neutral");
 }
 
+function updateProgress() {
+  const count = collectDimensions().filter(d => (d.score === null || (d.score >= 1 && d.score <= 5)) && d.rationale.trim() && d.confidence && (d.score === null || d.evidenceQuote.trim())).length;
+  setMessage(byId('review-progress'), `${count} of 8 dimensions filled`);
+}
+
 function init() {
   const form = byId("review-form");
   if (!form) return;
 
+  for (const [id,label,placeholder] of STRATEGY_FIELDS) {
+    const input = makeTextarea(id, 3);
+    input.placeholder = placeholder;
+    byId('strategy-fields').append(field(label,input));
+  }
+  byId('export-strategy').addEventListener('click', () => {
+    try {
+      const record = strategyRecord(collectMetadata(),byId('source-messaging').value,Object.fromEntries(STRATEGY_FIELDS.map(([id])=>[id,getValue(id)])));
+      download(strategyMarkdown(record),exportFilename(record.assetName+'-category-stress-test','md'),'text/markdown');
+      setMessage(byId('strategy-status'),'Category stress test exported as a draft for human decision.','success');
+    } catch (error) {setMessage(byId('strategy-status'),error.message,'error');}
+  });
   ensureManualReviewControl();
   renderDimensions();
   setExportEnabled(false);
 
-  const invalidateRenderedResult = () => {
+  const invalidateRenderedResult = (event) => {
+    updateProgress();
+    if (event?.target.id !== 'manual-review-status') setValue('manual-review-status','pending');
+    setMessage(byId('strategy-status'),'');
     const results = byId("results");
     if (results && !results.hidden) {
       results.hidden = true;
@@ -450,11 +482,14 @@ function init() {
 
   byId("load-example")?.addEventListener("click", (event) => {
     event.preventDefault();
-    const review = cloneSignalsDeskExample();
+    const examples = { signalsdesk: cloneSignalsDeskExample, releaseguard: cloneReleaseGuardExample, relayboard: cloneRelayboardExample };
+    const review = prepareImportedReview(examples[byId('example-choice').value]());
+    STRATEGY_FIELDS.forEach(([id])=>setValue(id,''));
+    setMessage(byId('strategy-status'),'');
     populateReview(review);
     renderResults(review);
     clearErrors();
-    setMessage(byId("status-message"), "Loaded the fictional SignalsDesk example: 39/100.", "success");
+    setMessage(byId("status-message"), `Loaded fictional example: ${review.metadata.assetName}. ${review.calculation.score}/100. Human review pending.`, "success");
   });
 
   byId("generate-prompt")?.addEventListener("click", (event) => {
@@ -468,7 +503,7 @@ function init() {
     clearErrors();
     const prompt = generateEvaluationPrompt({
       metadata: collectMetadata(),
-      sourceMessaging: getValue("source-messaging"),
+      sourceMessaging: byId("source-messaging")?.value || "",
     });
     setValue("generated-prompt", prompt);
     openDialog(byId("prompt-dialog"));
@@ -509,12 +544,15 @@ function init() {
       setMessage(byId("import-errors"), result.errors.map((message) => `• ${message}`).join("\n"), "error");
       return;
     }
-    populateReview(result.review);
-    renderResults(result.review);
+    const contextErrors = importContextErrors(result.review,{metadata:collectMetadata(),sourceMessaging:byId('source-messaging').value});
+    if (contextErrors.length) {setMessage(byId('import-errors'),contextErrors.join('\n'),'error'); return;}
+    const imported = prepareImportedReview(result.review);
+    populateReview(imported);
+    renderResults(imported);
     setMessage(byId("import-errors"), "");
     clearErrors();
     closeDialog(byId("import-dialog"));
-    setMessage(byId("status-message"), "Validated and applied the imported review. Verify it before publishing.", "success");
+    setMessage(byId("status-message"), "Imported as a draft. Previous notes are preserved; human review must be recorded again.", "success");
   });
 
   byId("export-markdown")?.addEventListener("click", (event) => {

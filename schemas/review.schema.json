@@ -17,7 +17,7 @@
   ],
   "properties": {
     "schemaVersion": { "const": "1.0.0" },
-    "appVersion": { "const": "1.0.0" },
+    "appVersion": { "enum": ["1.0.0", "1.1.0"] },
     "rubricVersion": { "const": "1.0.0" },
     "metadata": {
       "type": "object",

@@ -121,3 +121,11 @@ Every review should contain:
 5. Unsupported or risky claims
 6. Recommended next test
 7. Human review notes
+
+## Reliability diagnostics (app 1.1)
+
+Critical score flags take precedence over the headline total. Excluding a core dimension makes the review partial; excluding responsible AI alone can be appropriate for non-AI messaging. Coverage is displayed but not treated as a probability. Low confidence, missing context, risky claims, and high credibility without supplied evidence remain visible in the diagnosis.
+
+The sensitivity range applies a simultaneous one-point decrease/increase to each applicable rating, bounded by 1 and 5. It is a scenario, not a statistical confidence interval. The 1–5 scale means the minimum complete score is 20/100.
+
+The separate category stress test evaluates the reasoning through human-written counterarguments and disconfirmation criteria. It does not award additional points or make a publication decision. See the [pressure-test report](../evals/pressure-test-2026-09-21.md).

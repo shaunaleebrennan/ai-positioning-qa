@@ -55,7 +55,7 @@ test("version, review date, and UI-required context fields are enforced", async 
   invalid.metadata.buyingTrigger = "";
   invalid.metadata.alternatives = "";
   const errors = validateReview(invalid).errors.join("\n");
-  assert.match(errors, /appVersion must be 1\.0\.0/);
+  assert.match(errors, /appVersion must be 1\.1\.0/);
   assert.match(errors, /rubricVersion must be 1\.0\.0/);
   assert.match(errors, /valid ISO 8601/);
   assert.match(errors, /journeyStage cannot be empty/);

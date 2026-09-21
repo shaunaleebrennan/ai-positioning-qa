@@ -121,3 +121,13 @@ Feedback from product marketers, founders, researchers, and responsible-AI pract
 ## License
 
 Released under the [MIT License](LICENSE).
+
+## Version 1.1: defend the position
+
+The app now combines the existing messaging rubric with an optional category stress test. Record competitor, analyst, and customer counterarguments; defend or narrow the claim; name the evidence gaps and disconfirming test; and export a draft with an accountable owner and source snapshot.
+
+Results put critical claims, excluded dimensions, missing evidence, and low confidence ahead of the total. A one-point sensitivity scenario exposes how much the score depends on judgment. Imported approval resets to pending, current source/context must match, and edits invalidate approval and exports. Version 1.0 review files remain supported.
+
+The interface shares the portfolio's dark palette and lilac, pink, and green accents. Three fictional examples are available in the app. Source material stays in memory; export before closing or reloading. Category stress tests export separately from messaging reviews and cannot currently be re-imported.
+
+Read the [pressure-test findings and remaining limitations](evals/pressure-test-2026-09-21.md). The numerical rubric has been tested; external AI models and real-world positioning outcomes have not been benchmarked.

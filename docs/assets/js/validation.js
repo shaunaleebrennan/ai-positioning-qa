@@ -101,7 +101,7 @@ export function validateReview(review) {
   if (review.schemaVersion !== SCHEMA_VERSION) {
     errors.push(`review.schemaVersion must be ${SCHEMA_VERSION}.`);
   }
-  if (review.appVersion !== APP_VERSION) {
+  if (!["1.0.0", APP_VERSION].includes(review.appVersion)) {
     errors.push(`review.appVersion must be ${APP_VERSION}.`);
   }
   if (review.rubricVersion !== RUBRIC_VERSION) {
@@ -164,7 +164,7 @@ export function validateReview(review) {
       checkString(dimension.missingContext, `${path}.missingContext`, errors, { max: 5000 });
 
       if (typeof dimension.evidenceQuote === "string" && typeof review.sourceMessaging === "string") {
-        if (dimension.score !== null && dimension.evidenceQuote.length === 0) {
+        if (dimension.score !== null && dimension.evidenceQuote.trim().length === 0) {
           errors.push(`${path}.evidenceQuote cannot be empty for an applicable dimension.`);
         } else if (
           dimension.evidenceQuote.length > 0 &&

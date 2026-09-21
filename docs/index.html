@@ -7,7 +7,7 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
     >
-    <meta name="theme-color" content="#10172a">
+    <meta name="theme-color" content="#0b0d0c">
     <meta
       name="description"
       content="A browser-based, evidence-led QA framework for reviewing B2B product positioning."
@@ -25,8 +25,8 @@
           <span aria-hidden="true">AP</span>
           <span>AI Positioning QA</span>
         </a>
-        <div class="edition" aria-label="Version 1.0, open source">
-          <span>v1.0</span>
+        <div class="edition" aria-label="Version 1.1, open source">
+          <span>v1.1</span>
           <span aria-hidden="true">/</span>
           <span>Open source</span>
         </div>
@@ -38,12 +38,14 @@
         <div class="shell intro-grid">
           <div class="intro-copy">
             <p class="eyebrow">Evidence-led messaging review</p>
-            <h1 id="page-title">Make positioning feedback discussable.</h1>
+            <h1 id="page-title">Make your<br><em>position</em><br>defensible.</h1>
             <p class="lede">
               An AI-assisted positioning review for B2B messaging. Score what the asset
               actually communicates, trace every observation to evidence, and keep the
               final judgement with a human.
             </p>
+            <div class="hero-actions"><a class="button button-primary" href="#context">Start a review ↗</a><a href="#source">Try a worked example ↓</a></div>
+            <p class="byline">Built by <a href="https://shaunaleebrennan.github.io/shauna-ai-portfolio/">Shauna Brennan</a> · Strategy, made inspectable.</p>
           </div>
 
           <aside class="principle-card" aria-labelledby="principle-title">
@@ -71,10 +73,11 @@
 
       <div class="shell app-shell">
         <aside class="workflow-rail" aria-label="Review workflow">
-          <p class="rail-label">Review workflow</p>
+          <p class="rail-label">Review workflow</p><p id="review-progress" class="progress-note" role="status">0 of 8 dimensions filled</p>
           <ol>
             <li><a href="#context"><span>01</span> Context</a></li>
             <li><a href="#source"><span>02</span> Source</a></li>
+            <li><a href="#strategy"><span>↗</span> Defend the position</a></li>
             <li><a href="#rubric"><span>03</span> Score</a></li>
             <li><a href="#synthesis"><span>04</span> Synthesise</a></li>
             <li><a href="#results"><span>05</span> Review</a></li>
@@ -89,7 +92,7 @@
           <div id="error-summary" class="message message-error" role="alert" tabindex="-1" hidden></div>
           <div id="status-message" class="message message-status" role="status" aria-live="polite" aria-atomic="true"></div>
 
-          <form id="review-form">
+          <form id="review-form" novalidate>
             <section id="context" class="panel" aria-labelledby="context-title">
               <div class="section-heading">
                 <div>
@@ -215,10 +218,11 @@
               </div>
 
               <div class="button-row button-row-spread">
-                <button id="load-example" class="button button-secondary" type="button">
+                <div class="example-controls"><label for="example-choice">Fictional example</label><select id="example-choice"><option value="signalsdesk">SignalsDesk · weak claims</option><option value="releaseguard">ReleaseGuard · stronger evidence</option><option value="relayboard">Relayboard · non-AI product</option></select><button id="load-example" class="button button-secondary" type="button">
                   Load worked example
-                </button>
+                </button></div>
                 <div class="button-cluster">
+                  <button id="clear-review" class="button button-danger" type="button">Clear review</button>
                   <button id="generate-prompt" class="button button-quiet" type="button">
                     Generate AI prompt
                   </button>
@@ -229,6 +233,15 @@
               </div>
             </section>
 
+            <section id="strategy" class="panel strategy-panel" aria-labelledby="strategy-title">
+              <div class="section-heading"><div><p class="section-number">Strategic pressure test</p><h2 id="strategy-title">Defend the position.</h2></div><p>A clear message can still rest on a weak category claim. Make the strongest case against your position before defending it.</p></div>
+              <details><summary>Open the category stress test <span>Optional · separate from the score</span></summary>
+                <p class="field-help">These are human-authored challenges, not simulated customer research. The export records your source, asset version, reasoning, and accountable owner as a draft decision record.</p>
+                <div id="strategy-fields" class="field-grid field-grid-two"></div>
+                <button id="export-strategy" type="button" class="button button-secondary">Export category stress test</button>
+                <p id="strategy-status" class="message" role="status" hidden></p>
+              </details>
+            </section>
             <section id="rubric" class="panel" aria-labelledby="rubric-title">
               <div class="section-heading">
                 <div>
@@ -316,7 +329,7 @@
               <div class="calculation-band">
                 <div>
                   <strong>Ready to calculate?</strong>
-                  <p>The application computes the total. AI-supplied totals are ignored.</p>
+                  <p>The application computes the total. Imports with inconsistent totals are rejected.</p>
                 </div>
                 <button id="calculate" class="button button-primary" type="submit">
                   Calculate review
@@ -337,6 +350,7 @@
               </p>
             </div>
 
+            <aside class="diagnostic-card" aria-labelledby="diagnostic-status"><h3 id="diagnostic-status"></h3><ul id="diagnostic-warnings"></ul><p id="score-sensitivity"></p></aside>
             <div class="score-summary" aria-live="polite" aria-atomic="true">
               <div class="overall-score-block">
                 <span class="score-label">Normalised score</span>
@@ -381,9 +395,7 @@
                   Export JSON
                 </button>
               </div>
-              <button id="clear-review" class="button button-danger" type="button">
-                Clear review
-              </button>
+
             </div>
           </section>
         </div>
@@ -430,8 +442,7 @@
         <button id="close-import" class="icon-button" type="button" aria-label="Close import dialog">×</button>
       </div>
       <p id="import-dialog-description" class="modal-intro">
-        Paste only JSON returned from the generated prompt. The app validates its structure
-        and flags evidence quotations it cannot find verbatim in your source.
+        Paste only JSON returned from the generated prompt. The app validates its structure, checks quotations and matches it to your current source and context. Imported approval always resets to pending. Clear the current review to restore a different saved record.
       </p>
       <div id="import-errors" class="message message-error" role="alert" aria-live="assertive" hidden></div>
       <div class="field-group">

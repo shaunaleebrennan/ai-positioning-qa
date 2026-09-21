@@ -1,3 +1,4 @@
+import { diagnoseReview } from "./diagnostics.js";
 import { getDimension } from "./rubric.js";
 import { validateReview } from "./validation.js";
 
@@ -24,6 +25,7 @@ export function reviewToJson(review) {
 export function reviewToMarkdown(review) {
   assertValid(review);
   const excluded = review.calculation.excludedDimensionIds;
+  const diagnostic = diagnoseReview(review);
   const dimensions = review.dimensions
     .map((item) => {
       const rubric = getDimension(item.id);
@@ -63,6 +65,14 @@ export function reviewToMarkdown(review) {
 - **Excluded as N/A:** ${excluded.length ? excluded.join(", ") : "None"}
 
 ${flags}
+
+## Review reliability
+
+**${diagnostic.status}**
+
+${list(diagnostic.warnings)}
+
+If every applicable score moves by one point, the total ranges from ${diagnostic.sensitivity.min} to ${diagnostic.sensitivity.max}. This is a sensitivity scenario, not a statistical confidence interval.
 
 ## Dimension scores
 

@@ -34,3 +34,13 @@ All notable changes to this project will be documented here.
 - Fictional SignalsDesk worked example
 - Reusable messaging evaluation template
 - Responsible-use guidance and contribution standards
+
+## 1.1.0 — 2026-09-21
+
+- Added category counterargument and disconfirmation worksheet with draft Markdown export.
+- Added coverage, evidence, confidence, and sensitivity diagnostics to results and Markdown exports.
+- Rejected whitespace-only quotes; bound imports to the current source/context; reset imported or edited human approval.
+- Clarified AI prompt provenance, untrusted context, self-approval, and differentiation checks.
+- Added strong and non-AI browser examples and portfolio-aligned styling.
+- Expanded deterministic tests to 40, including 200 scoring variations; syntax-check every browser module.
+- Kept rubric 1.0.0 weights and compatibility with app 1.0.0 review files.
