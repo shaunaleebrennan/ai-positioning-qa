@@ -39,7 +39,7 @@
         "reviewerType": { "enum": ["human", "ai-assisted"] },
         "reviewedAt": { "type": "string", "format": "date-time" },
         "audience": { "type": "string", "minLength": 1, "maxLength": 1000 },
-        "journeyStage": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "journeyStage": { "description": "Audience awareness stage; legacy field name retained for compatibility.", "type": "string", "minLength": 1, "maxLength": 200 },
         "buyingTrigger": { "type": "string", "minLength": 1, "maxLength": 1000 },
         "alternatives": { "type": "string", "minLength": 1, "maxLength": 1000 },
         "suppliedEvidence": { "type": "string", "maxLength": 5000 }

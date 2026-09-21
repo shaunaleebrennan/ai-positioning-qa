@@ -1,3 +1,4 @@
+import { awarenessIndicator } from "./awareness.js";
 import { diagnoseReview, prepareImportedReview, importContextErrors } from "./diagnostics.js";
 import { STRATEGY_FIELDS, strategyRecord, strategyMarkdown } from "./strategy.js";
 import { reviewToJson, reviewToMarkdown, exportFilename } from "./export.js";
@@ -227,7 +228,7 @@ function requiredContextErrors() {
   const required = [
     ["asset-name", "Asset name"],
     ["reviewer-type", "Review method"],
-    ["journey-stage", "Journey stage"],
+    ["journey-stage", "Awareness stage"],
     ["audience", "Intended audience"],
     ["buying-trigger", "Buying trigger"],
     ["alternatives", "Alternatives considered"],
@@ -275,8 +276,20 @@ function collectReview() {
   };
 }
 
+function updateAwarenessIndicator() {
+  setMessage(byId("awareness-indicator"), awarenessIndicator(getValue("journey-stage")));
+}
+
 function populateReview(review) {
   activeReviewedAt = review.metadata.reviewedAt;
+  const stageSelect = byId("journey-stage");
+  stageSelect.querySelectorAll("[data-legacy-stage]").forEach(option => option.remove());
+  if (![...stageSelect.options].some(option => option.value === review.metadata.journeyStage)) {
+    const option = makeElement("option", {text: `Previously saved: ${review.metadata.journeyStage}`});
+    option.value = review.metadata.journeyStage;
+    option.dataset.legacyStage = "true";
+    stageSelect.append(option);
+  }
   const map = {
     "asset-name": review.metadata.assetName,
     "asset-version": review.metadata.assetVersion,
@@ -294,6 +307,7 @@ function populateReview(review) {
     "manual-review-status": review.manualReview.status,
   };
   Object.entries(map).forEach(([id, value]) => setValue(id, value));
+  updateAwarenessIndicator();
   renderDimensions(review.dimensions);
   updateProgress();
 }
@@ -409,6 +423,8 @@ function exportReview(format) {
 function clearReview() {
   activeReviewedAt = new Date().toISOString();
   byId("review-form")?.reset();
+  byId("journey-stage").querySelectorAll("[data-legacy-stage]").forEach(option => option.remove());
+  updateAwarenessIndicator();
   setValue("generated-prompt", "");
   setValue("import-json", "");
   renderDimensions();
@@ -449,6 +465,7 @@ function init() {
       setMessage(byId('strategy-status'),'Category stress test exported as a draft for human decision.','success');
     } catch (error) {setMessage(byId('strategy-status'),error.message,'error');}
   });
+  byId("journey-stage").addEventListener("change", updateAwarenessIndicator);
   ensureManualReviewControl();
   renderDimensions();
   setExportEnabled(false);

@@ -125,15 +125,16 @@
                 </div>
 
                 <div class="field-group">
-                  <label for="journey-stage">Journey stage <span aria-hidden="true">*</span></label>
-                  <input
-                    id="journey-stage"
-                    name="journey-stage"
-                    type="text"
-                    autocomplete="off"
-                    placeholder="e.g. Early consideration"
-                    required
-                  >
+                  <label for="journey-stage">Awareness stage <span aria-hidden="true">*</span></label>
+                  <select id="journey-stage" name="journey-stage" required aria-describedby="awareness-indicator">
+                    <option value="">Choose an awareness stage</option>
+                    <option value="Unaware">Unaware</option>
+                    <option value="Problem aware">Problem aware</option>
+                    <option value="Solution aware">Solution aware</option>
+                    <option value="Product aware">Product aware</option>
+                    <option value="Most aware">Most aware</option>
+                  </select>
+                  <p class="field-help" id="awareness-indicator" aria-live="polite">Choose what the prospect already knows before reading this asset.</p>
                 </div>
               </div>
 

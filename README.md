@@ -15,7 +15,7 @@ Messaging reviews often collapse into reactions such as “make it punchier” o
 
 This project makes the reasoning visible:
 
-- define the audience, buying trigger, journey stage, alternatives, and available evidence;
+- define the audience, buying trigger, awareness stage, alternatives, and available evidence;
 - score the words on the page rather than hidden product knowledge;
 - connect every applicable score to an exact quotation;
 - separate missing context from message quality;
@@ -131,3 +131,5 @@ Results put critical claims, excluded dimensions, missing evidence, and low conf
 The interface shares the portfolio's dark palette and lilac, pink, and green accents. Three fictional examples are available in the app. Source material stays in memory; export before closing or reloading. Category stress tests export separately from messaging reviews and cannot currently be re-imported.
 
 Read the [pressure-test findings and remaining limitations](evals/pressure-test-2026-09-21.md). The numerical rubric has been tested; external AI models and real-world positioning outcomes have not been benchmarked.
+
+Awareness stage uses five indicators: Unaware, Problem aware, Solution aware, Product aware, and Most aware. Saved JSON retains the `journeyStage` field for compatibility with existing review files.

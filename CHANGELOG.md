@@ -44,3 +44,5 @@ All notable changes to this project will be documented here.
 - Added strong and non-AI browser examples and portfolio-aligned styling.
 - Expanded deterministic tests to 40, including 200 scoring variations; syntax-check every browser module.
 - Kept rubric 1.0.0 weights and compatibility with app 1.0.0 review files.
+
+- Renamed Journey stage to Awareness stage, with five selectable stages and prospect-knowledge indicators; prompts and Markdown exports use the same framework. Existing saved JSON remains compatible.

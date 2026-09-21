@@ -48,7 +48,7 @@ export function reviewToMarkdown(review) {
 - **App version:** ${review.appVersion}
 - **Rubric version:** ${review.rubricVersion}
 - **Audience:** ${review.metadata.audience}
-- **Journey stage:** ${review.metadata.journeyStage || "Not supplied"}
+- **Awareness stage:** ${review.metadata.journeyStage || "Not supplied"}
 - **Buying trigger:** ${review.metadata.buyingTrigger || "Not supplied"}
 - **Alternatives:** ${review.metadata.alternatives || "Not supplied"}
 - **Evidence supplied:** ${review.metadata.suppliedEvidence || "None supplied"}
