@@ -72,6 +72,45 @@ check('Headline expectations omit procurement detail and full success metric',()
   assert.equal(r.weights.fit,0);assert.equal(r.weights.trust,0);assert.equal(r.weights.proof,0);
   assert.equal(r.rows.value.level,4);assert.match(r.rows.value.anchors[4],/beneficiary/);
 });
+check('The same short message faces different format expectations at evaluation',()=>{
+  const text='Frontline employees struggle to find shift policies because scattered content delays answers. Rather than adding another portal, improve policy search by using one entry point.';
+  const headline=assess(text,{assetType:'Headline / paid ad'});
+  const pitch=assess(text,{assetType:'Sales pitch / deck'});
+  assert.equal(headline.total,95); // independently: 40 + 3/4×20 + 40
+  assert.equal(pitch.total,43); // independently: 20 + 3/4×20 + 3/4×10, rounded once
+  assert(headline.total>pitch.total+35);
+  assert.equal(headline.weights.proof,0);
+  assert.equal(pitch.weights.proof,20);
+  assert.equal(headline.rows.clarity.level,4);
+  assert.equal(pitch.rows.clarity.level,3);
+});
+check('When basic comprehension fails, the first edit addresses it before later gaps',()=>{
+  const r=assess('ROI, governance, integration, customer, proven, pilot, security, data, cost, adoption, efficiency.');
+  assert(r.rows.clarity.level<2);
+  assert.equal(r.ranked[0],'clarity');
+});
+check('Short asset rules work at every stage; unrelated assertions still receive a warning',()=>{
+  for(const goal of Object.keys(R.stages)) {
+    const r=assess('IT teams struggle to resolve tickets because manual routing delays employees. Reduce support tickets by using one intake.',{goal,assetType:'Headline / paid ad'});
+    assert.equal(r.weights.fit,0);assert.equal(r.weights.trust,0);assert.equal(r.weights.proof,0);
+    assert.equal(r.rows.clarity.anchors[4],'A clear, restrained headline; no CTA required');
+  }
+  const risky=assess('Zero data retention. IT teams struggle to resolve tickets because manual routing delays employees.',{goal:'attention',assetType:'Headline / paid ad'});
+  assert.equal(risky.label,'Claim review required');
+});
+check('Long copy pasted as a headline cannot obtain full clarity credit',()=>{
+  const r=assess(strong,{assetType:'Headline / paid ad'});
+  assert.equal(r.rows.clarity.level,2);
+  assert.match(r.rows.clarity.reason,/45-word/);
+});
+check('All listed format and stage combinations have explicit 100-point weights',()=>{
+  for(const goal of Object.keys(R.stages))for(const assetType of Object.keys(R.formats)){
+    const r=assess(weak,{goal,assetType});
+    assert.equal(Object.values(r.weights).reduce((n,w)=>n+w,0),100);
+    assert.equal(r.format,assetType);
+    assert.equal(r.total,Math.round(Object.values(r.rows).reduce((n,x)=>n+x.level/4*x.weight,0)));
+  }
+});
 check('Every context has 100 available points and a reproducible total',()=>{
   for(const goal of ['attention','shortlist','evaluation']) for(const assetType of ['Headline / paid ad','Sales pitch / deck','IT-focused strategic narrative']) for(const message of ['',weak,strong,pile]) {
     const r=assess(message,{goal,assetType});
@@ -81,5 +120,3 @@ check('Every context has 100 available points and a reproducible total',()=>{
     for(const id of r.ranked)assert(r.rows[id].weight>0&&r.rows[id].level<4);
   }
 });
-
-

@@ -6,7 +6,7 @@
 
 IT Pressure Test replaces the original AI Positioning QA as the featured public build. This repository retains the implementation and evaluation history; the live app is hosted inside the portfolio. `docs/tool.html` is the app entry point used by the portfolio sync script. The old Pages root redirects to the new live location.
 
-## IT buyer workflow · rubric 3.1
+## IT buyer workflow · rubric 3.2
 
 Choose one of six IT audiences, a buying role, purchase stage and asset type, then paste an asset. Awareness, alternatives and supporting evidence sit in optional context. The result keeps the /100 messaging score, Gut Reaction, three priority changes and buyer questions easy to scan. Open **Why this score?** for levels, weights and matching passages, or **Run deep review** for claim checks and an editable rewrite brief without leaving the tool.
 
@@ -18,7 +18,7 @@ The original manual evaluator and saved-review JSON format remain available sepa
 
 ### Team use case: Workvivo
 
-Within Workvivo's product marketing team, we use the framework to pressure-test messaging for IT buyers: does the copy establish a relevant problem, explain the value and system fit, and make claims the team can support? Team-specific product knowledge and approved evidence inform the human review.
+Within Workvivo's product marketing team, we use the framework to pressure-test messaging for IT buyers: does the copy establish a relevant problem, explain the value and system fit, and make claims the team can support? Team-specific product knowledge and approved evidence inform the human review. A separate Workvivo score would need validated buyer ratings and approved claim sources; the current calculation does not award vendor-specific points.
 
 The public app is the generic version of that workflow. It contains no Workvivo product lens, internal messaging, customer evidence or private research attachments. This note describes the use case; there is no separate company-specific public tool or link.
 
