@@ -58,7 +58,7 @@ For short formats, a specific beneficiary and workflow outcome replace the full 
 
 The ordinary labels are 80–100 **Strong structure**, 60–79 **Promising**, 40–59 **Needs work** and below 40 **Reframe the message**. These are editorial bands, not validated thresholds. Critical-claim warnings override the positive label without hiding the underlying calculation.
 
-Compare drafts only under the same rubric version, purchase stage and asset format. A small score change has no established practical significance. The IT remit and buying role change the Gut Reaction, questions and rewrite guidance; they do not add hidden numerical bonuses. Market focus is recorded context only.
+Compare drafts only under the same rubric version, purchase stage and asset format. A small score change has no established practical significance. The general IT lens and unknown buying role are defaults when marketing has not identified the reader. A selected specialist remit or buying role changes the Gut Reaction, questions and rewrite guidance; none add hidden numerical bonuses. Every remit has a focus question in the output even when its detailed criterion has no weight in a short asset. Market focus is recorded context only.
 
 The local rules can miss paraphrases, negation, relationships between sentences and important claims. They can also reward structurally complete but irrelevant or false copy. Review the meaning, the central promise and the applicability of every source before using the recommendations.
 
