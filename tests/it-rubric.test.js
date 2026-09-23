@@ -89,6 +89,16 @@ check('When basic comprehension fails, the first edit addresses it before later 
   assert(r.rows.clarity.level<2);
   assert.equal(r.ranked[0],'clarity');
 });
+check('Common inflected task verbs retain buyer-pressure credit in concise copy',()=>{
+  const natural='IT teams waste time finding policies because knowledge sits in scattered tools. Rather than add another portal, help staff find approved answers faster through one place.';
+  const paraphrase='IT teams waste time as they find policies because knowledge sits in scattered tools. Rather than add another portal, help staff find approved answers faster through one place.';
+  for(const message of [natural,paraphrase]) {
+    const result=assess(message,{goal:'attention',assetType:'Headline / paid ad'});
+    assert.equal(result.rows.relevance.level,4);
+    assert.equal(result.total,100);
+  }
+  assert(assess('ROI, governance, integration, customer, proven, pilot, security, data, cost, adoption, efficiency.').total<30);
+});
 check('Short asset rules work at every stage; unrelated assertions still receive a warning',()=>{
   for(const goal of Object.keys(R.stages)) {
     const r=assess('IT teams struggle to resolve tickets because manual routing delays employees. Reduce support tickets by using one intake.',{goal,assetType:'Headline / paid ad'});

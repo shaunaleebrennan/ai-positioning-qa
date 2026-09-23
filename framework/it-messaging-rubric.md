@@ -1,4 +1,4 @@
-# IT messaging rubric 3.2
+# IT messaging rubric 3.3
 
 The public IT Pressure Test scores the structure of one message for its purchase stage and format. It is a vendor-neutral editing aid. It does not verify facts, simulate a real buyer, measure purchase probability or approve copy for publication. A headline scored at Commit is still a headline score, not an assessment of an entire purchase case.
 
@@ -60,7 +60,7 @@ The ordinary labels are 80–100 **Strong structure**, 60–79 **Promising**, 40
 
 Compare drafts only under the same rubric version, purchase stage and asset format. A small score change has no established practical significance. The general IT lens and unknown buying role are defaults when marketing has not identified the reader. A selected specialist remit or buying role changes the Gut Reaction, questions and rewrite guidance; none add hidden numerical bonuses. Every remit has a focus question in the output even when its detailed criterion has no weight in a short asset. Market focus is recorded context only.
 
-The local rules can miss paraphrases, negation, relationships between sentences and important claims. They can also reward structurally complete but irrelevant or false copy. Review the meaning, the central promise and the applicability of every source before using the recommendations.
+The local rules can miss paraphrases, negation, relationships between sentences and important claims. Version 3.3 recognizes common inflected action verbs in short buyer-problem passages; scores from 3.2 and 3.3 are not comparable. The rules can still reward structurally complete but irrelevant or false copy. Review the meaning, the central promise and the applicability of every source before using the recommendations.
 
 ## Calibration still needed
 

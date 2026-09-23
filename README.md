@@ -6,7 +6,7 @@
 
 IT Pressure Test replaces the original AI Positioning QA as the featured public build. This repository retains the implementation and evaluation history; the live app is hosted inside the portfolio. `docs/tool.html` is the app entry point used by the portfolio sync script. The old Pages root redirects to the new live location.
 
-## IT buyer workflow · rubric 3.2
+## IT buyer workflow · rubric 3.3
 
 Choose one of six IT audiences, a buying role, purchase stage and asset type, then paste an asset. Awareness, alternatives and supporting evidence sit in optional context. The result keeps the /100 messaging score, Gut Reaction, three priority changes and buyer questions easy to scan. Open **Why this score?** for levels, weights and matching passages, or **Run deep review** for claim checks and an editable rewrite brief without leaving the tool.
 
