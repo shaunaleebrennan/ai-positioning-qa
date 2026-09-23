@@ -6,15 +6,23 @@
 
 IT Pressure Test replaces the original AI Positioning QA as the featured public build. This repository retains the implementation and evaluation history; the live app is hosted inside the portfolio. `docs/tool.html` is the app entry point used by the portfolio sync script. The old Pages root redirects to the new live location.
 
-## IT buyer workflow · v2.2
+## IT buyer workflow · rubric 3.1
 
-Imported from the latest ChatGPT prototype and integrated into the portfolio design. Choose one of six IT audiences, a buying role, awareness stage, purchase stage and asset type, then paste an asset. The tool returns a Gut Reaction, priority changes, buyer questions and an in-tool deep review with matching passages and an editable rewrite brief.
+Choose one of six IT audiences, a buying role, purchase stage and asset type, then paste an asset. Awareness, alternatives and supporting evidence sit in optional context. The result keeps the /100 messaging score, Gut Reaction, three priority changes and buyer questions easy to scan. Open **Why this score?** for levels, weights and matching passages, or **Run deep review** for claim checks and an editable rewrite brief without leaving the tool.
 
-This is a **local rules-based diagnostic**, with no model calls or automatic storage. The six-gate score counts language signals; it is not a measure of buyer readiness or factual accuracy. Prototype weights vary by remit, role and purchase stage. Awareness and asset type guide the rewrite brief; market focus is recorded context only. Keywords can be negated, irrelevant or stuffed into copy. A human must assess meaning and proof.
+This is a **local rules-based structural estimate**, with no model calls, analytics or automatic storage. Explicit 0–4 criteria contribute to a score using purchase-stage weights; Discover headlines use lighter requirements. Remit, buying role and awareness shape guidance without hidden numerical bonuses. Proof status stays separate, source names alone do not establish credibility, and critical claims remain visible even at a high score. A human must assess meaning and evidence.
+
+Read the [public scoring rubric](framework/it-messaging-rubric.md) and [3.1 validation notes](evals/it-rubric-3.1.md). The weights and bands are editorial, not calibrated buyer-response measures. Compare drafts under identical settings; small point differences have no validated significance.
 
 The original manual evaluator and saved-review JSON format remain available separately. Its eight-dimension scores are not comparable to the IT tool's six-gate scores.
 
-[Integration and validation notes](evals/it-buyer-integration-2026-09-21.md)
+### Team use case: Workvivo
+
+Within Workvivo's product marketing team, we use the framework to pressure-test messaging for IT buyers: does the copy establish a relevant problem, explain the value and system fit, and make claims the team can support? Team-specific product knowledge and approved evidence inform the human review.
+
+The public app is the generic version of that workflow. It contains no Workvivo product lens, internal messaging, customer evidence or private research attachments. This note describes the use case; there is no separate company-specific public tool or link.
+
+[Earlier integration notes](evals/it-buyer-integration-2026-09-21.md)
 
 ---
 
@@ -22,7 +30,7 @@ The original manual evaluator and saved-review JSON format remain available sepa
 
 An open-source, browser-based evaluator for evidence-led B2B positioning reviews.
 
-[Open the evaluator](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/) · [See the rubric](framework/positioning-rubric.md) · [Review the worked example](examples/signalsdesk-worked-example.md)
+[Open the manual evaluator](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/manual-review.html) · [See the manual rubric](framework/positioning-rubric.md) · [Review the worked example](examples/signalsdesk-worked-example.md)
 
 AI Positioning QA turns subjective messaging feedback into a review you can inspect and discuss. It scores one asset across eight positioning dimensions, requires exact source evidence, calculates results deterministically, and leaves the final judgement with the marketer.
 
@@ -85,7 +93,7 @@ The evaluator has no runtime dependencies. From the repository root:
 python3 -m http.server 4175 --directory docs
 ```
 
-Then open `http://127.0.0.1:4175/`.
+Then open `http://127.0.0.1:4175/tool.html`. The old root redirects to the portfolio; `manual-review.html` opens the separate manual evaluator.
 
 Run the JavaScript syntax and deterministic test suite with Node.js 20 or later:
 

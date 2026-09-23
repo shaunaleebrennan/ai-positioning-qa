@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented here.
 
+## IT buyer rubric 3.1 — 2026-09-23
+
+- Replaced keyword totals with inspectable 0–4 criteria and explicit stage weights, with separate headline requirements.
+- Kept the /100 score visible and moved detailed reasoning into Why this score?; moved optional context out of the main form.
+- Added separate unverified proof status, conservative citation handling, negation checks, prospective-test classification and vendor-neutral system matching.
+- Exposed critical claim warnings beside the score and in exports, including when the numerical total is high.
+- Kept deep review inside the app, complete context and edited-brief export, no automatic saving, and the separate manual evaluator.
+- Documented the public rubric, limitations and team use case without publishing company-specific messaging or a separate branded tool.
+
 ## 1.0.0 — 2026-09-19
 
 ### Added
