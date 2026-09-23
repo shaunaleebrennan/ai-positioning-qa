@@ -15,7 +15,7 @@ function render(r){
   $('#evidence-status').textContent=evidenceStatus(r);
   $('#verdict-title').textContent=r.audit.label;
   $('#verdict-tag').textContent=`${r.rule.label} · ${r.audit.format}`;
-  $('#verdict-copy').textContent=r.audit.criticalClaims.length?`Critical claim to check: “${r.audit.criticalClaims[0].quote}” The numeric score does not clear this claim.`:r.total===100?'All structural checks were detected. Claims, sources and competitive difference have not been verified.':`Scored against this ${r.audit.format} alone. A short asset cannot stand in for a full purchase case. Check the reasoning and sources.`;
+  $('#verdict-copy').textContent=r.audit.criticalClaims.length?`Critical claim to check: “${r.audit.criticalClaims[0].quote}” The numeric score does not clear this claim.`:r.total===100?'All structural checks were detected. Claims, sources and competitive difference have not been verified.':`Scored against this ${r.audit.format} alone. ${r.audit.shortAsset||r.assetType==='Email / outreach'?'A short asset cannot stand in for a full purchase case.':'This does not establish buyer acceptance.'} Check the reasoning and sources.`;
   $('#reaction-label').textContent='Gut Reaction';
   $('#reaction').textContent=react(r);
   $('#priorities').innerHTML=r.ranked.length?r.ranked.slice(0,3).map(id=>{const x=r.audit.rows[id];return `<li><b>${esc(dims[id].name)}</b><span>${esc(x.next)}</span><small class="points-note">${esc(x.reason)}</small></li>`}).join(''):'<li>All structural checks are met. Have a reviewer confirm the evidence and audience fit.</li>';
