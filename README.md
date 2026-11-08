@@ -1,163 +1,103 @@
 # IT Pressure Test
 
-[Try the IT buyer tool](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/) · [Manual eight-dimension review](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/manual-review.html)
+**Will IT believe it?** Review B2B technology messaging against the six questions IT buyers ask before they take a vendor seriously.
 
-**[Read the portfolio case study](https://shaunaleebrennan.github.io/shauna-ai-portfolio/case-study.html?case=it-pressure-test)**
+**[Open the tool](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/)** · [Read the method](framework/it-messaging-rubric.md) · [Why the method changed in 4.0](evals/it-rubric-4.0.md)
 
-IT Pressure Test replaces the original AI Positioning QA as the featured public build. This repository retains the implementation and evaluation history; the live app is hosted inside the portfolio. `docs/tool.html` is the app entry point used by the portfolio sync script. The old Pages root redirects to the new live location.
-
-## IT buyer workflow · rubric 3.3
-
-Choose one of six IT audiences, a buying role, purchase stage and asset type, then paste an asset. Awareness, alternatives and supporting evidence sit in optional context. The result keeps the /100 messaging score, Gut Reaction, three priority changes and buyer questions easy to scan. Open **Why this score?** for levels, weights and matching passages, or **Run deep review** for claim checks and an editable rewrite brief without leaving the tool.
-
-This is a **local rules-based structural estimate**, with no model calls, analytics or automatic storage. Explicit 0–4 criteria contribute to a score using purchase-stage weights; Discover headlines use lighter requirements. Remit, buying role and awareness shape guidance without hidden numerical bonuses. Proof status stays separate, source names alone do not establish credibility, and critical claims remain visible even at a high score. A human must assess meaning and evidence.
-
-Read the [public scoring rubric](framework/it-messaging-rubric.md) and [3.1 validation notes](evals/it-rubric-3.1.md). The weights and bands are editorial, not calibrated buyer-response measures. Compare drafts under identical settings; small point differences have no validated significance.
-
-The original manual evaluator and saved-review JSON format remain available separately. Its eight-dimension scores are not comparable to the IT tool's six-gate scores.
-
-### Team use case: Workvivo
-
-Within Workvivo's product marketing team, we use the framework to pressure-test messaging for IT buyers: does the copy establish a relevant problem, explain the value and system fit, and make claims the team can support? Team-specific product knowledge and approved evidence inform the human review. A separate Workvivo score would need validated buyer ratings and approved claim sources; the current calculation does not award vendor-specific points.
-
-The public app is the generic version of that workflow. It contains no Workvivo product lens, internal messaging, customer evidence or private research attachments. This note describes the use case; there is no separate company-specific public tool or link.
-
-[Earlier integration notes](evals/it-buyer-integration-2026-09-21.md)
+Built by [Shauna Azevedo-Brennan](https://shaunaleebrennan.github.io/shauna-ai-portfolio/), product marketing leader. MIT licensed.
 
 ---
 
-## Original manual evaluator
+## What it does
 
-An open-source, browser-based evaluator for evidence-led B2B positioning reviews.
+You choose who is reading (six IT lenses, from CIO to security to IT operations), the purchase stage and the format, then paste one piece of copy. The tool walks you through six questions:
 
-[Open the manual evaluator](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/manual-review.html) · [See the manual rubric](framework/positioning-rubric.md) · [Review the worked example](examples/signalsdesk-worked-example.md)
+| Question | What a strong answer looks like |
+| --- | --- |
+| **Recognisable pressure** | The buyer, the task and a reason to change the current approach |
+| **Business value** | A specific improvement, how it happens, and how you’d measure it |
+| **Stack fit** | The systems it works with, what stays and what changes |
+| **Trust and governance** | Specific controls, who owns them, and the boundaries |
+| **Credibility and proof** | An identifiable, scoped source for the central claim |
+| **Clarity and repeatability** | A plain proposition and a next step that suits the stage |
 
-AI Positioning QA turns subjective messaging feedback into a review you can inspect and discuss. It scores one asset across eight positioning dimensions, requires exact source evidence, calculates results deterministically, and leaves the final judgement with the marketer.
+For each one you pick a level from 0 to 4 and the passage in the copy that earns it. The tool turns that into:
 
-> **What it is:** an interactive positioning QA framework with optional AI assistance.  
-> **What it is not:** an autonomous agent, a copy generator, or proof of message-market fit.
+- a score out of 100, weighted for the stage and format;
+- **what to change first**, ordered by what the copy is missing;
+- **what IT will ask next**, in the words of the reader you chose;
+- **claims to check** before publishing: numbers, absolutes and comparisons;
+- a Markdown record you can share or attach to a brief.
 
-## Why it exists
-
-Messaging reviews often collapse into reactions such as “make it punchier” or “lead with value.” Generic AI rewrites can add volume while also introducing unsupported claims, invented product behaviour, or confident recommendations with no traceable basis.
-
-This project makes the reasoning visible:
-
-- define the audience, buying trigger, awareness stage, alternatives, and available evidence;
-- score the words on the page rather than hidden product knowledge;
-- connect every applicable score to an exact quotation;
-- separate missing context from message quality;
-- surface critical credibility and responsible-AI risks; and
-- record what a human accepted, rejected, or changed.
-
-## Use the evaluator
-
-Everything runs locally in the browser. There are no accounts, analytics, model calls, or server-side storage.
-
-1. Add the review context and exact source messaging.
-2. Complete the eight-dimension review yourself, or generate a structured prompt for an AI tool approved by you or your organisation.
-3. If using AI assistance, paste its JSON response back into the evaluator.
-4. The evaluator validates the structure, checks that evidence quotations exist verbatim in the source, and recalculates the score itself.
-5. Review and edit the findings before exporting a Markdown or JSON record.
-
-Do not place confidential, personal, customer, or unapproved material into an external AI tool. Generating a prompt does not send anything; copying it elsewhere is your decision.
-
-## Scoring model
-
-| Dimension | Weight | Core question |
-|---|---:|---|
-| ICP specificity | 15% | Is it clear who this is for and when it becomes valuable? |
-| Problem relevance | 15% | Does it express an important problem in customer terms? |
-| Differentiation | 15% | Is the choice distinct from the alternatives customers consider? |
-| Value articulation | 15% | Are capabilities connected to outcomes the audience values? |
-| Clarity | 15% | Can the intended audience understand the offer quickly? |
-| Evidence and credibility | 10% | Are important claims supported and proportionate? |
-| Narrative consistency | 5% | Do the message elements reinforce one positioning? |
-| Responsible AI claims | 10% | Are AI claims specific, bounded, and appropriately transparent? |
-
-Scores use a 1–5 scale. A genuinely irrelevant dimension can be marked N/A with a reason; its weight is removed before the result is normalised.
+## How the score works
 
 ```text
-normalised score =
-  100 × sum((score / 5) × weight)
-      / sum(applicable weights)
+score = round( sum of (level / 4) × weight )
 ```
 
-The total is a prioritisation aid, not an objective verdict. Read the component evidence, uncertainty, and missing context before the number.
+- **You make the judgement.** Simple rules suggest a passage to look at for each question and flag claims, but they never set a score.
+- **Every rating is tied to the copy.** A level above 0 doesn’t count until it’s linked to a passage from the text.
+- **The stage decides what counts.** A headline isn’t asked about system fit; a Commit-stage brief is. Weights always sum to 100.
+- **The weights are editorial.** They haven’t been calibrated against buyer outcomes, so compare drafts under the same settings and treat small differences as noise.
 
-## Run locally
+Full levels, weights and ordering rules are in the [rubric](framework/it-messaging-rubric.md).
 
-The evaluator has no runtime dependencies. From the repository root:
+## Optional: draft the ratings with AI
+
+The tool can build a prompt containing the rubric, your context and the copy. Paste it into an AI tool your organisation has approved, then paste the JSON reply back. The reply is applied only if every criterion is present, every level is 0–4, and every quoted passage actually appears in your copy. Applied ratings stay marked **AI draft** until you confirm or change them, and the exported record says which ones you didn’t.
+
+The page never calls an AI model itself.
+
+## Privacy
+
+Everything runs in your browser tab. There are no accounts, analytics, network requests or saved data; the page’s content security policy blocks outgoing connections. Your copy is gone when you close the tab, so export the record if you want to keep it. Don’t paste confidential or unreleased material into an external AI tool.
+
+## Why 4.0 is human-rated
+
+Earlier versions scored copy automatically with keyword rules. Testing showed they rewarded vocabulary, not meaning: a clear, buyer-focused paragraph scored 15/100, while a run-on list of terms such as *SSO*, *SOC 2* and *reduces costs by 40%* scored 85. Version 4.0 keeps the rubric and moves the judgement to the reviewer, with the rules demoted to pointers. The [evaluation](evals/it-rubric-4.0.md) has the details.
+
+## Run it locally
+
+No build step and no dependencies.
 
 ```bash
 python3 -m http.server 4175 --directory docs
+# open http://127.0.0.1:4175/tool.html
 ```
 
-Then open `http://127.0.0.1:4175/tool.html`. The old root redirects to the portfolio; `manual-review.html` opens the separate manual evaluator.
-
-Run the JavaScript syntax and deterministic test suite with Node.js 20 or later:
+Tests need Node.js 20 or later:
 
 ```bash
-npm run check
+npm test        # scoring, AI-reply validation, rubric, page contract
+npm run check   # syntax check plus the test suite
 ```
 
-## Repository map
+## Repository
 
 ```text
-ai-positioning-qa/
-├── docs/                         # Static evaluator published by GitHub Pages
-│   ├── index.html
-│   └── assets/
-├── framework/
-│   └── positioning-rubric.md     # Human-readable rubric and scoring rules
-├── schemas/
-│   └── review.schema.json        # Machine-readable review contract
-├── examples/                     # Weak, strong, and non-AI review fixtures
-├── evals/
-│   └── evaluation-template.md    # Manual review template
-├── tests/                        # Scoring, validation, prompt, and export checks
-├── product/
-│   └── v1-spec.md                # Product scope and acceptance criteria
-└── archive/
-    └── ai-positioning-qa-v0.1.zip
+docs/
+  tool.html                 IT Pressure Test
+  manual-review.html        Original eight-dimension manual review
+  assets/js/review.js       Scoring, AI-reply validation, export
+  assets/js/it-rubric.js    Weights, levels, passage suggestions, claim flags
+  assets/js/it-engine.js    IT reader lenses and their questions
+  assets/js/it-review-app.js  The tool's interface
+framework/                  The IT rubric and the manual rubric
+evals/                      Evaluation notes, including 4.0
+tests/                      Node test suite
+examples/                   Fictional review fixtures for the manual review
 ```
 
-## Design and safety decisions
+The live tool is published inside the portfolio. After changing this repository, sync it from the portfolio repository with `node scripts/sync-it-pressure-test.mjs`.
 
-- **Local by default:** source messaging remains in browser memory unless you deliberately copy or export it.
-- **No browser API keys:** the app never asks for model credentials or calls a provider.
-- **Deterministic totals:** imported scores are recalculated in application code; model-supplied totals are not trusted.
-- **Traceable evidence:** applicable findings require an exact source quotation.
-- **Strict imports:** malformed, oversized, incomplete, or unexpectedly structured JSON is rejected.
-- **Human accountability:** AI-assisted output remains an editable draft and must not be treated as approval to publish.
-- **Accessible output:** results use labelled text and score bars rather than an inaccessible decorative chart.
+## Also here: the manual positioning review
 
-## Limitations
+[`manual-review.html`](https://shaunaleebrennan.github.io/shauna-ai-portfolio/it-pressure-test/manual-review.html) is the original tool: an eight-dimension positioning review (ICP, problem, differentiation, value, clarity, evidence, narrative consistency, responsible AI claims) with exact-quote evidence, an optional AI handoff and JSON export. Its scores use a different scale and aren’t comparable with the IT Pressure Test. See the [manual rubric](framework/positioning-rubric.md) and the [worked example](examples/signalsdesk-worked-example.md).
 
-AI Positioning QA does not verify product capabilities, competitive facts, customer demand, legal claims, or the truth of supplied evidence. A high score cannot establish message-market fit. Rubric calibration across asset types and reviewers remains an area for further research.
+## Limits
 
-The included examples are fictional. They demonstrate behaviour; they are not market evidence.
-
-## What this project demonstrates
-
-This is a product-marketing build as well as a tool: domain judgement encoded into a transparent workflow, a constrained AI handoff, deterministic evaluation, test fixtures, and an explicit human decision point.
+The tool checks how copy is built, not whether it’s true. It doesn’t open sources, check competitor material or predict how buyers will respond, and a high score isn’t proof of message–market fit. The examples are fictional.
 
 ## Contributing
 
-Feedback from product marketers, founders, researchers, and responsible-AI practitioners is welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request.
-
-## License
-
-Released under the [MIT License](LICENSE).
-
-## Version 1.1: defend the position
-
-The app now combines the existing messaging rubric with an optional category stress test. Record competitor, analyst, and customer counterarguments; defend or narrow the claim; name the evidence gaps and disconfirming test; and export a draft with an accountable owner and source snapshot.
-
-Results put critical claims, excluded dimensions, missing evidence, and low confidence ahead of the total. A one-point sensitivity scenario exposes how much the score depends on judgment. Imported approval resets to pending, current source/context must match, and edits invalidate approval and exports. Version 1.0 review files remain supported.
-
-The interface shares the portfolio's dark palette and lilac, pink, and green accents. Three fictional examples are available in the app. Source material stays in memory; export before closing or reloading. Category stress tests export separately from messaging reviews and cannot currently be re-imported.
-
-Read the [pressure-test findings and remaining limitations](evals/pressure-test-2026-09-21.md). The numerical rubric has been tested; external AI models and real-world positioning outcomes have not been benchmarked.
-
-Awareness stage uses five indicators: Unaware, Problem aware, Solution aware, Product aware, and Most aware. Saved JSON retains the `journeyStage` field for compatibility with existing review files.
+Feedback from product marketers, IT buyers and researchers is welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Released under the [MIT License](LICENSE).

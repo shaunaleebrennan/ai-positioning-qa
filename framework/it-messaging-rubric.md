@@ -1,12 +1,48 @@
-# IT messaging rubric 3.3
+# IT messaging rubric 4.0
 
-The public IT Pressure Test scores the structure of one message for its purchase stage and format. It is a vendor-neutral editing aid. It does not verify facts, simulate a real buyer, measure purchase probability or approve copy for publication. A headline scored at Commit is still a headline score, not an assessment of an entire purchase case.
+The IT Pressure Test checks one piece of B2B technology messaging against six questions an IT buyer asks before taking a vendor seriously. **A person rates the copy.** The tool keeps the rating consistent, ties every rating to a passage from the copy, and turns the ratings into a score, a list of what to fix first and the questions IT will ask next.
 
-## Calculation
+It is an editing aid. It does not verify facts, simulate a real buyer, predict a purchase or approve copy for publication.
 
-Each criterion earns a level from 0 to 4. Checks are cumulative: stronger credit requires the preceding checks. A criterion contributes `level / 4 × weight`; the contributions are summed and the total is rounded once.
+## Why 4.0 changed the method
 
-| Criterion | Full asset: Discover | Full asset: Evaluate | Full asset: Commit | Headline: any stage | Outreach: any stage |
+Versions up to 3.3 scored copy automatically with keyword rules. Testing showed the rules rewarded vocabulary rather than meaning: a clear, buyer-focused paragraph scored 15/100, while a run-on list of terms such as *SSO*, *SOC 2* and *reduces costs by 40%* scored 85, "Strong structure". See [the 4.0 evaluation](../evals/it-rubric-4.0.md).
+
+In 4.0 the rules no longer score anything. They suggest a passage to look at for each question and flag claims to check. The score comes only from ratings that a person makes, or confirms after an optional AI draft.
+
+## The six questions
+
+| Criterion | The buyer’s question (general IT lens) |
+| --- | --- |
+| Recognisable pressure | Which IT or employee problem is this solving, and why now? |
+| Business value | What improves for the organisation, and how would we tell? |
+| Stack fit | Where does this sit alongside the tools we already run? |
+| Trust and governance | What new risks, controls and responsibilities would this introduce? |
+| Credibility and proof | What evidence supports the main claim for an organisation like ours? |
+| Clarity and repeatability | Could I explain what this does and why it matters to another stakeholder? |
+
+Six specialist lenses (CIO, AI transformation, digital workplace, enterprise architecture, security, IT operations) reword these questions for that reader. The lens changes the questions and guidance, never the weights.
+
+## Levels
+
+Each criterion is rated from 0 to 4. Levels are cumulative: level 3 requires what levels 1 and 2 require.
+
+| Criterion | 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- | --- |
+| Pressure | A problem is named | Buyer and task are tied to the problem | The consequence is explained | An explicit reason to change the current approach |
+| Value | A benefit is mentioned | A specific workflow benefit | A mechanism connects the work to the benefit | A scoped measure or success test |
+| Fit | An integration is mentioned | Named system and interaction | What stays or changes is explicit | A dependency or boundary is explicit |
+| Trust | General assurance or credential | A specific control is stated | Who controls what is explained | A boundary or responsibility is stated |
+| Proof | A source is referenced | The reference is identifiable | Its scope is stated | A relevant result or control is linked to that scope |
+| Clarity | Readable text | A clear action or idea | Readable, restrained wording | An explicit next step suited to this stage |
+
+**Evidence rule:** any level above 0 must be tied to a passage from the copy. A rating without a passage, or with a passage that isn’t in the copy, does not count.
+
+## Weights
+
+The purchase stage and asset format decide which questions count and how much. Weights always sum to 100.
+
+| Criterion | Discover | Evaluate | Commit | Headline / ad | Email / outreach |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Recognisable pressure | 30 | 20 | 10 | 40 | 35 |
 | Business value | 20 | 20 | 20 | 20 | 25 |
@@ -14,56 +50,51 @@ Each criterion earns a level from 0 to 4. Checks are cumulative: stronger credit
 | Trust and governance | 0 | 10 | 20 | 0 | 0 |
 | Credibility and proof | 15 | 20 | 20 | 0 | 0 |
 | Clarity and repeatability | 35 | 10 | 10 | 40 | 40 |
-| Total | 100 | 100 | 100 | 100 | 100 |
 
-Full asset defaults apply to sales pitches and product briefs. Other formats adjust them as follows, listed in criterion order: pressure, value, fit, trust, proof, clarity.
+The stage columns apply to sales pitches and product briefs. Campaign copy, homepages, strategic narratives and messaging frameworks use adjusted weights for each stage; the exact values are in [`it-rubric.js`](../docs/assets/js/it-rubric.js). A weight of 0 means the format can’t reasonably carry that question at that stage, so it isn’t asked.
 
-| Format | Discover | Evaluate | Commit |
-| --- | --- | --- | --- |
-| Campaign / thought leadership | 35 / 25 / 0 / 0 / 0 / 40 | 30 / 25 / 10 / 0 / 10 / 25 | 20 / 25 / 15 / 10 / 10 / 20 |
-| Homepage / landing page | 30 / 25 / 0 / 0 / 15 / 30 | 20 / 20 / 20 / 10 / 15 / 15 | full asset |
-| IT strategic narrative or positioning framework | 35 / 25 / 0 / 0 / 10 / 30 | 25 / 20 / 15 / 10 / 20 / 10 | full asset |
+```text
+score = round( sum over rated criteria of (level / 4) × weight )
+```
 
-Headlines and outreach use the same short-format weights at each purchase stage: the score concerns the supplied unit of copy. For a headline/ad longer than 45 words or outreach longer than 200 words, clarity is capped at level 2. Those are editorial review limits, not researched conversion thresholds.
+| Score | Label |
+| --- | --- |
+| 80–100 | Strong structure |
+| 60–79 | Promising |
+| 40–59 | Needs work |
+| below 40 | Reframe the message |
 
-These weights are editorial choices. Discover prioritises a recognisable problem and clear proposition; later stages give more weight to system fit, controls and justification when the format can carry them. Priority changes normally follow the largest unearned criterion weight, but place clarity, then relevance, then value first if its basic level is below 2. That editorial diagnostic order draws on Wynter's [Message Layers](https://grader.wynter.com/) and [research playbook](https://wynter.com/research-playbook); it does not reproduce a Wynter panel, comparison index or score. Neither the weights nor the equal spacing between levels have been calibrated against independent buyer ratings or commercial outcomes.
+The weights and bands are editorial choices. They have not been calibrated against buyer ratings or commercial outcomes, so compare drafts under the same stage and format and treat small differences as noise.
 
-## What earns stronger credit
+## What to change first
 
-| Criterion | Level 1 | Level 2 | Level 3 | Level 4 |
-| --- | --- | --- | --- | --- |
-| Pressure | Problem named | Buyer and task linked to problem | Consequence explained | Discover: reason to reconsider; fuller Evaluate/Commit asset: contrast plus stated mechanism |
-| Value | Benefit mentioned | Specific workflow benefit | Mechanism connected to benefit | Full asset: measure, population and period; short/editorial asset: beneficiary and workflow |
-| Fit | Interaction mentioned | Named or described system and action | What stays or changes | Dependency or boundary |
-| Trust | Assurance or credential | Specific control and object | Control owner | Boundary or responsibility |
-| Proof | Source reference | URL or identifiable document citation | Relevant scope | Scoped result or control |
-| Clarity | Usable text | Concrete proposition | Readable, restrained wording | Stage-appropriate next step, or a clear takeaway where a CTA is optional |
+Among the rated criteria below level 4, a weak basic message comes first: clarity, then pressure, then value, if any is below level 2. After that, the criterion with the largest unearned weight, `weight × (1 − level / 4)`, comes first.
 
-Level 0 means the rule did not detect a qualifying passage; it is not proof the content is absent or false. Open a criterion in **Why this score?** to inspect its estimated level and matched passage.
+## Optional AI draft
 
-For short formats, a specific beneficiary and workflow outcome replace the full success measure. Technical detail and inline proof carry no points. Headlines, editorial copy, strategic narratives and internal messaging frameworks do not need a CTA. Emails still need a next step. Claims still need scrutiny even when proof carries no points. The score checks whether the text *expresses* a difference; it does not check competitor material or prove the difference is true. The attached Wynter example uses simulated respondents, so its numerical ratings are a prompt to examine clarity and distinctness, not observed IT buyer performance.
+The reviewer can copy a prompt containing the rubric, the context and the copy into an AI tool their organisation has approved, then paste the JSON reply back. The page itself makes no network requests.
 
-## Evidence and claim safeguards
+A reply is applied only if every check passes:
 
-- Only the source message earns points. Separate background proof cannot silently improve it.
-- A publisher's name alone earns source-reference credit, not identifiable-document credit.
-- All supplied and referenced evidence remains unverified: the tool does not open sources or establish that they support the claim.
-- An asserted material claim without attribution in its passage limits proof credit to level 1. Attribution elsewhere may be valid, but requires a human to make that connection.
-- An absolute assurance limits trust credit to level 1 until scope and exceptions are reviewed.
-- High-risk assertions display **Claim review required** beside the score. A high total never clears them.
-- Proposed measurements are separated from achieved results. Investment, adoption, pricing and comparative claims get different review questions.
-- Exact repeated passages earn no extra criterion credit. Known vendor names have no special score advantage.
+- every required criterion is present;
+- every level is a whole number from 0 to 4;
+- every level above 0 quotes a passage that appears in the copy (ignoring differences in spacing).
 
-## Interpreting results
+Applied ratings are marked **AI draft** until the reviewer confirms or changes each one, and the exported record says which ratings were never confirmed.
 
-The ordinary labels are 80–100 **Strong structure**, 60–79 **Promising**, 40–59 **Needs work** and below 40 **Reframe the message**. These are editorial bands, not validated thresholds. Critical-claim warnings override the positive label without hiding the underlying calculation.
+## What the local rules still do
 
-Compare drafts only under the same rubric version, purchase stage and asset format. A small score change has no established practical significance. The general IT lens and unknown buying role are defaults when marketing has not identified the reader. A selected specialist remit or buying role changes the Gut Reaction, questions and rewrite guidance; none add hidden numerical bonuses. Every remit has a focus question in the output even when its detailed criterion has no weight in a short asset. Market focus is recorded context only.
+- **Suggest a passage** for each question, as a pointer. They often miss the right one; that’s why they no longer score.
+- **Flag claims to check:** numbers, absolutes, comparisons and investment claims, each with the question a reviewer should ask. A flag never changes the score, and the absence of a flag doesn’t make a claim safe.
 
-The local rules can miss paraphrases, negation, relationships between sentences and important claims. Version 3.3 recognizes common inflected action verbs in short buyer-problem passages; scores from 3.2 and 3.3 are not comparable. The rules can still reward structurally complete but irrelevant or false copy. Review the meaning, the central promise and the applicability of every source before using the recommendations.
+## Limits
+
+- The tool checks how the copy is built, not whether it is true. It never opens sources or checks competitor material.
+- A high score cannot establish message–market fit or buyer acceptance.
+- Ratings depend on the reviewer. Two reviewers can disagree; the passage tied to each rating makes the disagreement easy to discuss.
 
 ## Calibration still needed
 
-Use varied real draft pairs across stages and formats, independently scored by at least two reviewers who cannot see the automated result. Examine criterion disagreement and pairwise ordering, including vendor substitutions, paraphrases, negation and citation formats. Tune on one subset and check another. No calibration dataset or outcome-validation result is claimed here.
+Use varied real draft pairs across stages and formats, rated independently by at least two reviewers. Compare agreement by criterion and the order in which reviewers rank drafts, then adjust the level descriptions and weights. No calibration dataset or outcome validation is claimed here.
 
-Implementation: [`it-rubric.js`](../docs/assets/js/it-rubric.js). Regression checks: [`it-rubric.test.js`](../tests/it-rubric.test.js). The separate [manual eight-dimension rubric](positioning-rubric.md) uses a different scale and its scores are not interchangeable with this tool.
+Implementation: [`review.js`](../docs/assets/js/review.js) (scoring, AI-reply validation, export) and [`it-rubric.js`](../docs/assets/js/it-rubric.js) (weights, levels, passage suggestions, claim flags). Tests: [`review.test.js`](../tests/review.test.js). The separate [manual eight-dimension rubric](positioning-rubric.md) uses a different scale; its scores are not interchangeable with this tool’s.

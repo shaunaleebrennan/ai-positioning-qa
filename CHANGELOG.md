@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0 · IT rubric 4.0 · 8 November 2026
+
+- **Human-rated scoring.** The reviewer rates each of the six IT buyer questions from 0 to 4, tied to a passage from the copy. The keyword rules no longer score; they suggest passages and flag claims. See [the 4.0 evaluation](evals/it-rubric-4.0.md) for why.
+- **Optional AI draft.** Copy a prompt into an approved AI tool and paste the JSON reply back. It is applied only if every criterion is present, levels are 0–4 and every quoted passage is in the copy. Drafts stay marked until confirmed.
+- **Redesigned tool** in the portfolio's Complex → Clear system: one column, the review on paper, the verdict as the dark moment, a fictional worked example with a sample AI reply.
+- **New README and rubric** written for the human-rated method.
+- Removed the old automatic-scoring interface (`it-buyer.js`).
+
 All notable changes to this project will be documented here.
 
 ## IT buyer rubric 3.1 — 2026-09-23

@@ -1,9 +1,9 @@
 {
   "name": "ai-positioning-qa",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "A dependency-free, browser-only positioning review workflow.",
+  "description": "IT Pressure Test: a browser-only, human-rated review of B2B technology messaging for IT buyers.",
   "scripts": {
     "test": "node --test",
     "check": "node scripts/check.mjs"
